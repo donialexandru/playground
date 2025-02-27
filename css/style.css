@@ -1,0 +1,12 @@
+#grand-parent {
+  padding: 5rem;
+  background-color: yellow;
+}
+#parent {
+  padding: 5rem;
+  background-color: green;
+}
+#child {
+  padding: 5rem;
+  background-color: gray;
+}

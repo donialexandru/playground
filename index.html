@@ -9,10 +9,15 @@
   </head>
   <body>
     <h1>Welcome to my playground</h1>
-    <div class="parent">
-      <div id="child" class="child">I am the first child</div>
-      <div class="child"></div>
-      <div class="child"></div>
+    <div id="grand-parent" data-id="grand-parent">
+      I am grand-parent
+      <div id="parent" data-id="parent">
+        I am parent
+        <div id="child" data-id="child">
+          I am child
+          <button type="button" data-id="button">Press me!</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
