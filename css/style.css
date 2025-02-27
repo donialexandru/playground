@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 #grand-parent {
   padding: 5rem;
   background-color: yellow;
@@ -8,5 +19,24 @@
 }
 #child {
   padding: 5rem;
+  background-color: gray;
+}
+
+#pagination-root {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: auto;
   background-color: gray;
 }

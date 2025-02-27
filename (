@@ -10,11 +10,14 @@ window.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation();
   });
 
-  const body = document.body;
-  body.addEventListener("click", (e) => {
-    console.log("The body was activated");
-    e.stopPropagation();
-  });
+  // parent.addEventListener("click", () => {
+  //   console.log("you pressed on the parent");
+  // });
+  //
+  // child.addEventListener("click", (e) => {
+  //   e.stopPropagation();
+  //   console.log("you pressed on the child");
+  // });
 
   class MyCardItem extends HTMLElement {
     constructor() {
@@ -27,19 +30,6 @@ window.addEventListener("DOMContentLoaded", () => {
       this.shadow.appendChild(this.idElement);
       this.shadow.appendChild(this.priceElement);
     }
-    static get observedAttributes() {
-      return ["title", "data-id", "price"];
-    }
-    attributeChangedCallback(name, oldvalue, newValue) {
-      if (name === "title") {
-        this.titleElement.textContent = newValue;
-      } else if (name === "price") {
-        this.priceElement.textContent = newValue;
-      } else if (name === "data-id") {
-        this.idElement.textContent = newValue;
-      }
-    }
-
     connectedCallback() {
       this.titleElement.textContent = this.getAttribute("title");
       this.idElement.textContent = this.getAttribute("data-id");
@@ -61,10 +51,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const productsElement = document.getElementById("pagination-root");
   productsElement.innerHTML = "";
-  productsElement.addEventListener("click", (e) => {
-    console.log(`You have selected the card with id: ${e.target.dataset.id}`);
-    e.stopPropagation();
-  });
 
   let skip = 0;
 
@@ -74,17 +60,17 @@ window.addEventListener("DOMContentLoaded", () => {
     );
     const dataJson = await data.json();
     const products = dataJson.products;
+    console.log(products);
     skip += 10;
     return products;
   }
 
-  async function changeItems() {
-    newProducts = await fetchData();
+  function changeItems() {
     for (let i = 0; i < productsElement.children.length; i++) {
-      product = newProducts[i];
-      productsElement.children[i].setAttribute("title", product.title);
-      productsElement.children[i].dataset.id = product.id;
-      productsElement.children[i].setAttribute("price", product.price);
+      console.log(productsElement.children[i]);
+      // item.setAttribute("title", "new title");
+      productsElement.children[i].dataset.id = "new id";
+      // item.setAttribute("price", "new price");
     }
   }
 
@@ -101,8 +87,5 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   fetchButton = document.getElementById("fetch-button");
-  fetchButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    fetchAndProcessData();
-  });
+  fetchButton.addEventListener("click", fetchAndProcessData);
 });
